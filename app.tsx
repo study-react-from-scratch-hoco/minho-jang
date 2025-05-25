@@ -5,12 +5,13 @@ const React = {
       return tag(props, ...children);
     }
 
-    const el = {
+    const element = {
       tag,
       props,
       children
     };
-    return el;
+
+    return element;
   },
 };
 
@@ -41,6 +42,7 @@ const render = (element, container) => {
 // ---- Application ---- //
 const App = () => {
   const world = "World";
+
   return (
     <div draggable>
       <h2>Hello {world}!</h2>
