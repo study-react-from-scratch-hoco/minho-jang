@@ -21,3 +21,11 @@ render(React.createElement(App, null), document.getElementById("myapp"));
 <br>
 
 ---
+
+### 2장
+
+모듈화를 추가적으로 진행해보았는데, 프레임워크를 주로 사용하면서 느끼지 않았던 각종 불편함 (빌드, serve...) 을 느낄 수 있었다.  
+
+React 를 구현한 다른 글들을 보니 webpack 에서 babel-loader 을 사용해 JSX 문법을 처리했는데, TypeScript 컴파일러가 JSX 문법을 `"jsx": "react"` 설정을 통해 처리해준다는 것에 다시 감사함을 느낄 수 있었다.  
+
+모듈화를 진행하는데 1시간 좀 넘게 걸려서 괜히 했나 싶었지만, 깔끔하게 정리된 파일들을 보니 뿌듯했다!  
