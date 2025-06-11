@@ -1,15 +1,16 @@
 import { rerender } from "../render";
 import { appState } from "../state";
 
-export const useState = (initialState) => {
+export const useState = <T = any>(initialState: T) => {
   const stateIndex = appState.index;
-  appState.state[stateIndex] = appState.state[stateIndex] || initialState;
+  appState.state[stateIndex] =
+    (appState.state[stateIndex] as T) || initialState;
   console.log(
     `useState is initialized at cursor ${stateIndex} with value:`,
     appState.state
   );
 
-  const setState = (newState) => {
+  const setState = (newState: T) => {
     console.log(
       `setState is called at index ${stateIndex} with newState value:`,
       newState
@@ -21,5 +22,5 @@ export const useState = (initialState) => {
   appState.index++;
   console.log(`useState is incremented to ${appState.index}`);
 
-  return [appState.state[stateIndex], setState];
+  return [appState.state[stateIndex] as T, setState];
 };
