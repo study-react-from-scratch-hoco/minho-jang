@@ -22,10 +22,38 @@ render(React.createElement(App, null), document.getElementById("myapp"));
 
 ---
 
-### 2장
+### 2장  
 
-모듈화를 추가적으로 진행해보았는데, 프레임워크를 주로 사용하면서 느끼지 않았던 각종 불편함 (빌드, serve...) 을 느낄 수 있었다.  
+헨리님이 onchange 관련해서 실제 React 의 `onChange` 는 사용자의 입력에 따라 동적으로 동작하는데, 우리가 사용하는 `onchange` 는 Enter 를 누르거나 focus 에서 벗어나야지만 동작하는 것에 대해서 말을 하셨을 때, 혼자 했을 때는 *간단한 프로젝트니깐...* 하고 넘기게 되었던 점이 다시 눈에 들어왔고, 관련해서 찾아보며 React 공식 문서에 있었던 Diffing 에 대해서 다시 생각해보는 계기가 되었다. 
 
-React 를 구현한 다른 글들을 보니 webpack 에서 babel-loader 을 사용해 JSX 문법을 처리했는데, TypeScript 컴파일러가 JSX 문법을 `"jsx": "react"` 설정을 통해 처리해준다는 것에 다시 감사함을 느낄 수 있었다.  
+또한 평소에 잘 모르고 있던 HTML 이벤트 핸들러와 DOM 이벤트 리스너의 차이를 자세히 알게 되었다.
 
-모듈화를 진행하는데 1시간 좀 넘게 걸려서 괜히 했나 싶었지만, 깔끔하게 정리된 파일들을 보니 뿌듯했다!  
+```html
+<input type="text" onchange="handleChange()" />
+```
+- HTML 요소의 속성
+- DOM 프로퍼티로 할당됨
+- 하나의 핸들러만 등록됨
+- 이벤트 발생 시점: **focus 를 잃거나 Enter 키를 눌렀을 때**
+
+```js
+element.addEventListener('change', handleChange);
+element.addEventListener('input', handleInput);
+```
+- 여러 개의 핸들러 등록 가능
+- 이벤트 타입에 따라 발생 시점이 다름
+  
+> DOM 이벤트 리스너의 `input` 는 타이핑할 때마다 발생하며, HTML 이벤트의 `onchange` 는 focus 를 잃을 때만 발생하게 된다. 
+
+```jsx
+<input
+  type="text"
+  value={name}
+  oninput={(e) => setName(e.target.value)}
+  // onchange={(e) => setName(e.target.value)}
+/>
+```
+- `onchange` 가 아닌 `oninput` 을 사용하면 사용자의 입력에 따라 동적으로 실행하는 것이 가능하지만, 현재 구현된 rerender 에서는 `root.innerHTML = ''` 를 통해 전체를 초기화하고 다시 렌더링하기 때문에 focus 정보가 사라져 입력마다 끊기는 현상이 발생한다. 
+
+
+나중에 [React 톺아보기](https://goidle.github.io/) 에 나와있는 React Reconciler 에 대한 글들을 자세히 읽어보고 싶다. (제가 추천하긴 했지만 대충 보고 넘어간 글이였기 때문에..ㅎㅎㅎ)
