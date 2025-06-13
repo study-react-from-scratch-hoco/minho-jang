@@ -15,5 +15,6 @@
       "@/src/*": ["src/*"]
     }
   },
-  "include": ["src/**/*", "lib/**/*", "main.tsx"]
+  "include": ["src/**/*", "lib/**/*", "main.tsx"],
+  "exclude": ["node_modules"]
 }

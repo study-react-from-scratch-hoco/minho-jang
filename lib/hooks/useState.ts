@@ -1,10 +1,15 @@
 import { rerender } from "../render";
 import { appState } from "../state";
 
-export const useState = <T = any>(initialState: T) => {
+export const useState = <T = any>(
+  initialState: T
+): [T, (newState: T) => void] => {
   const stateIndex = appState.index;
-  appState.state[stateIndex] =
-    (appState.state[stateIndex] as T) || initialState;
+
+  if (appState.state[stateIndex] === undefined) {
+    appState.state[stateIndex] = initialState;
+  }
+
   console.log(
     `useState is initialized at cursor ${stateIndex} with value:`,
     appState.state

@@ -15,7 +15,7 @@ export const render = (element, container) => {
 
   let elementProps = element.props ? Object.keys(element.props) : null;
   if (elementProps && elementProps.length > 0) {
-    elementProps.forEach((prop) => (domElement[prop] = element.props[prop]));
+    elementProps.forEach((prop) => domElement[prop] = element.props[prop]);
   }
 
   if (element.children && element.children.length > 0) {
