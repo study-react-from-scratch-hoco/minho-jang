@@ -10,11 +10,13 @@
     "baseUrl": ".",
     "outDir": "dist",
     "paths": {
-      "@/react": ["lib/"],
+      "react": ["react/"],
+      "react-component/": ["react-component/"],
+      "react-component/*": ["react-component/*"],
       "@/src": ["src/"],
       "@/src/*": ["src/*"]
     }
   },
-  "include": ["src/**/*", "lib/**/*", "main.tsx"],
+  "include": ["src/**/*", "react/**/*", "main.tsx", "react-component/**/*"],
   "exclude": ["node_modules"]
 }

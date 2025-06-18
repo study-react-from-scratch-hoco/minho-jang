@@ -3,7 +3,7 @@ const path = require("path");
 module.exports = {
   entry: "./dist/main.js",
   output: {
-    filename: "index.js",
+    filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
   },
   module: {
@@ -25,11 +25,13 @@ module.exports = {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
     modules: [
       path.resolve(__dirname, "src"),
-      path.resolve(__dirname, "lib"),
+      path.resolve(__dirname, "react"),
+      path.resolve(__dirname, "react-component"),
       "node_modules",
     ],
     alias: {
-      "@/react": path.resolve(__dirname, "./lib/"),
+      react: path.resolve(__dirname, "./react/"),
+      "react-component": path.resolve(__dirname, "./react-component/"),
       "@/src": path.resolve(__dirname, "./src/"),
     },
   },

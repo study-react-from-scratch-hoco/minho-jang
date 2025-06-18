@@ -1,5 +1,5 @@
 import App from "@/src";
-import React from "../lib/react";
+import React from "../react";
 import { appState } from "./state";
 
 export const render = (element, container) => {
